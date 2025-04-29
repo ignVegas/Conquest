@@ -11,20 +11,23 @@ public class Game extends JFrame {
 
     public static final String CARD_MAIN_MENU = "MainMenu";
     public static final String CARD_GAME_PANEL = "GamePanel";
+    
+    private String difficulty = "Easy";
 
     private JPanel cardsPanel; 
     private MainMenu mainMenuPanel;
     private CircleGamePanel circleGamePanel;
 
+    
     public Game() {
-        super("Animated Circle Game (Swing)");
+        super("Conquest");
 
         // Prepare CardLayout container
         cardsPanel = new JPanel(new CardLayout());
 
         // Build two primary panels
         mainMenuPanel = new MainMenu(this);
-        circleGamePanel = new CircleGamePanel();
+        circleGamePanel = new CircleGamePanel(this);
 
         // Add them
         cardsPanel.add(mainMenuPanel, CARD_MAIN_MENU);
@@ -46,6 +49,13 @@ public class Game extends JFrame {
         return circleGamePanel;
     }
 
+    public void setDifficulty(String d) {  
+        this.difficulty = d;
+    }
+    public String getDifficulty() {        
+        return difficulty;
+    }
+ 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             Game frame = new Game();

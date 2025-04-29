@@ -31,6 +31,8 @@ public class MainMenu extends JPanel {
             String chosen = getSelectedDifficulty();
             System.out.println("Selected Difficulty: " + chosen);
 
+            parentFrame.setDifficulty(chosen);
+            
             // Switch to game panel
             parentFrame.showCard(Game.CARD_GAME_PANEL);
         });
