@@ -27,13 +27,24 @@ public class MainMenu extends JPanel {
         // Start button
         JButton startButton = new JButton("Start");
         startButton.addActionListener(e -> {
-            // Print chosen difficulty
+        	// 1) grab & store difficulty
             String chosen = getSelectedDifficulty();
-            System.out.println("Selected Difficulty: " + chosen);
-
             parentFrame.setDifficulty(chosen);
-            
-            // Switch to game panel
+
+            // 2) map to enemy HP
+            int enemyHP = switch (chosen) {
+                case "Medium" ->  90;
+                case "Hard"   -> 110;
+                default       ->  70;   // Easy
+            };
+
+            // 3) reset the existing StatsPanel
+            parentFrame
+              .getCircleGamePanel()
+              .getStatsPanel()
+              .resetStats(enemyHP);
+
+            // 4) show the game
             parentFrame.showCard(Game.CARD_GAME_PANEL);
         });
 

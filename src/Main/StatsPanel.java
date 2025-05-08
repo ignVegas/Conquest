@@ -55,6 +55,21 @@ public class StatsPanel extends JPanel {
         add(playerPanel);
         add(enemyPanel);
     }
+    // Completely re-initializes both player & enemy stats,
+    // and updates all the labels in one go.
+    public void resetStats(int initialEnemyHealth) {
+        // reset model
+        playerHealth   = 100;
+        playerPoints   = 0;
+        enemyHealth    = initialEnemyHealth;
+        enemyPoints    = 0;
+
+        // update view
+        playerHealthLabel.setText("Health: " + playerHealth);
+        playerPointsLabel.setText("Points: " + playerPoints);
+        enemyHealthLabel.setText("Health: " + enemyHealth);
+        enemyPointsLabel.setText("Points: " + enemyPoints);
+    }
 
     // Player getters/mutators
     public int getPlayerHealth() {
@@ -77,7 +92,7 @@ public class StatsPanel extends JPanel {
     }
 
     public void setEnemyHealth(int hp) {
-        enemyHealth -= hp;
+        enemyHealth += hp;
         enemyHealthLabel.setText("Health: " + enemyHealth);
     }
 
