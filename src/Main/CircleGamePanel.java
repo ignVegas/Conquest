@@ -85,7 +85,7 @@ public class CircleGamePanel extends JPanel {
                 if (choice >= 5 && choice <= 9) {
                     extraDamage = (int) Math.ceil(statsPanel.getEnemyHealth() * 0.05);
                 }
-                statsPanel.setEnemyHealth(-(baseDamage + extraDamage));
+                statsPanel.updateEnemyHealth(-(baseDamage + extraDamage));
             } 
             else if(sum != enemyNumber)
             {
@@ -106,10 +106,26 @@ public class CircleGamePanel extends JPanel {
             
             circlePanel.clearEnemyChoice();
         });
+        JButton save = new JButton("Save");
+        GameSave saver = new GameSave();
+        int enemyNumber = circlePanel.getEnemyNumber();
+        int pHealth = statsPanel.getPlayerHealth();
+        int pPoints = statsPanel.getPlayerPoints();
+        int eHealth = statsPanel.getEnemyHealth();
+        int ePoints = statsPanel.getEnemyPoints();
+        String saveName = "default";
+        save.addActionListener(e -> {
+        	String choice = JOptionPane.showInputDialog(saveName, "Enter Save Name:");
+        	if (choice != null) {
+        		saver.newSave(choice, parentFrame.getDifficulty(), pHealth, pPoints, eHealth, ePoints);
+        	}
+        	
+        });
 
         JPanel btnHolder = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 2));
         btnHolder.setOpaque(false);
         btnHolder.add(cont);
+        btnHolder.add(save);
 
         JPanel bottom = new JPanel();
         bottom.setLayout(new BoxLayout(bottom, BoxLayout.Y_AXIS));

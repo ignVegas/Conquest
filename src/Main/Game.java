@@ -11,12 +11,14 @@ public class Game extends JFrame {
 
     public static final String CARD_MAIN_MENU = "MainMenu";
     public static final String CARD_GAME_PANEL = "GamePanel";
+    public static final String CARD_SAVE_PANEL = "SavesPanel";
     
     private String difficulty = "Easy";
 
     private JPanel cardsPanel; 
     private MainMenu mainMenuPanel;
     private CircleGamePanel circleGamePanel;
+    private SavesPanel savesPanel;
 
     
     public Game() {
@@ -27,11 +29,13 @@ public class Game extends JFrame {
 
         // Build two primary panels
         mainMenuPanel = new MainMenu(this);
+        savesPanel = new SavesPanel(this);
         circleGamePanel = new CircleGamePanel(this);
 
         // Add them
         cardsPanel.add(mainMenuPanel, CARD_MAIN_MENU);
         cardsPanel.add(circleGamePanel, CARD_GAME_PANEL);
+        cardsPanel.add(savesPanel, CARD_SAVE_PANEL);
 
         // Frame setup
         add(cardsPanel);

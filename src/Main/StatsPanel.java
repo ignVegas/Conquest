@@ -90,10 +90,21 @@ public class StatsPanel extends JPanel {
     public int getEnemyHealth() {
         return enemyHealth;
     }
+    
+    public void updateEnemyHealth(int hp)
+    {
+    	enemyHealth -= hp;
+    	enemyHealthLabel.setText("Health: " + enemyHealth);
+    }
 
     public void setEnemyHealth(int hp) {
-        enemyHealth += hp;
+        enemyHealth = hp;
         enemyHealthLabel.setText("Health: " + enemyHealth);
+    }
+    
+    public void setPlayerHealth(int hp) {
+    	playerHealth = hp;
+    	playerHealthLabel.setText("Health: " + hp);
     }
 
 
@@ -101,9 +112,19 @@ public class StatsPanel extends JPanel {
         return enemyPoints;
     }
     
+    public void setEnemyPoints(int p) {
+    	enemyPoints = p;
+    	enemyPointsLabel.setText("Points: " + p);
+    }
+    
     public int getPlayerPoints()
     {
     	return playerPoints;
+    }
+    
+    public void setPlayerPoints(int p) {
+    	playerPoints = p;
+    	playerPointsLabel.setText("Points: " + p);
     }
     
     public void addEnemyPoints(int points)

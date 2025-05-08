@@ -27,25 +27,30 @@ public class MainMenu extends JPanel {
         // Start button
         JButton startButton = new JButton("Start");
         startButton.addActionListener(e -> {
-        	// 1) grab & store difficulty
+            // Print chosen difficulty
             String chosen = getSelectedDifficulty();
+            //System.out.println("Selected Difficulty: " + chosen);
+
             parentFrame.setDifficulty(chosen);
-
-            // 2) map to enemy HP
-            int enemyHP = switch (chosen) {
-                case "Medium" ->  90;
-                case "Hard"   -> 110;
-                default       ->  70;   // Easy
+            
+            int enemyHP = switch(chosen) {
+            case "Medium" -> 90;
+            case "Hard" -> 110;
+            default -> 70;
             };
-
-            // 3) reset the existing StatsPanel
+            
             parentFrame
-              .getCircleGamePanel()
-              .getStatsPanel()
-              .resetStats(enemyHP);
-
-            // 4) show the game
+            .getCircleGamePanel()
+            .getStatsPanel()
+            .resetStats(enemyHP);
+            
+            // Switch to game panel
             parentFrame.showCard(Game.CARD_GAME_PANEL);
+        });
+        JButton loadButton = new JButton("Load Game");
+        loadButton.addActionListener(e -> {
+        	//Switch to saves panel
+        	parentFrame.showCard(Game.CARD_SAVE_PANEL);
         });
 
         // Center alignment
@@ -53,6 +58,7 @@ public class MainMenu extends JPanel {
         mediumBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
         hardBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        loadButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         add(Box.createVerticalGlue());
         add(easyBtn);
@@ -62,6 +68,8 @@ public class MainMenu extends JPanel {
         add(hardBtn);
         add(Box.createRigidArea(new Dimension(0, 30)));
         add(startButton);
+        add(Box.createRigidArea(new Dimension(0, 30)));
+        add(loadButton);
         add(Box.createVerticalGlue());
     }
 
